@@ -240,7 +240,7 @@ get_core() {
     local TMP_DIRECTORY=$(mktemp -d)
     local FILE="${TMP_DIRECTORY}/sing-box"
     echo "正在下载 sing-box 请稍候..."
-    wget -t 10 -qO "$FILE" https://raw.githubusercontent.com/k0baya/sb-for-serv00/main/sing-box
+    wget -t 10 -qO "$FILE" https://github.com/nokiaxj/sb-for-serv00/releases/download/v1.0/sb113
     if [ $? -ne 0 ]; then
         echo "sing-box 安装失败，请检查网络情况"
         exit 1
