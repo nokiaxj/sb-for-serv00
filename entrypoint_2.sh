@@ -257,6 +257,16 @@ generate_config() {
     "level": "info",
     "timestamp": true
   },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-direct",
+        "address": "https://1.1.1.1/dns-query"
+      }
+    ],
+    // ⚠️ 关键点 1：必须开启 IPv6 查询支持
+    "strategy": "prefer_ipv4"
+  },
   "inbounds": [{
       "type": "hysteria2",
       "tag": "hy2-sb",
@@ -338,7 +348,33 @@ generate_config() {
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1280
     }
-  ]
+  ],
+  "route": {
+    "rules": [
+      // ⚠️ 关键点 2：防止死循环。强制让所有 DNS 流量走直连
+      {
+        "protocol": "dns",
+        "outbound": "direct"
+      },
+      // ⚠️ 关键点 3：防止自我拦截。强制让 WARP 节点建立底层连接的流量走直连
+      {
+        "outbound": "warp-ipv6-out",
+        "outbound_detour": "direct"
+      },
+      // ⚠️ 关键点 4：精准分流。拦截所有的 IPv6 连接，送入 WARP
+      {
+        "ip_version": 6,
+        "outbound": "warp-ipv6-out"
+      },
+      // 拦截所有的 IPv4 连接，送入直连
+      {
+        "ip_version": 4,
+        "outbound": "direct"
+      }
+    ],
+    // 兜底规则
+    "final": "direct-out"
+  }
 }
 EOF
 }
