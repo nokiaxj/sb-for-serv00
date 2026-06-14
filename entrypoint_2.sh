@@ -324,6 +324,19 @@ generate_config() {
     {
       "type": "block",
       "tag": "block"
+    },
+    {
+      "type": "wireguard",
+      "tag": "warp-ipv6-out",
+      "server": "162.159.192.1",
+      "server_port": 2408,
+      "local_address": [
+        "172.16.0.2/32",
+        "2606:4700:110:8e62:2f62:eb69:3d97:c6a5/128"
+      ],
+      "private_key": "wBBUpigxbXdv8NGRLHD0BnMfBhHlfujf9s8/BG8BLVo=",
+      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+      "mtu": 1280
     }
   ]
 }
