@@ -334,8 +334,8 @@ generate_config() {
     {
       "type": "block",
       "tag": "block"
-    },
-    {
+    }
+    ### {
       "type": "wireguard",
       "tag": "warp-ipv6-out",
       "server": "162.159.192.1",
@@ -348,8 +348,8 @@ generate_config() {
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1280
     }
-  ],
-  "route": {
+  ]
+  ### "route": {
     "rules": [
       // ⚠️ 关键点 2：防止死循环。强制让所有 DNS 流量走直连
       {
