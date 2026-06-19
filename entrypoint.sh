@@ -338,12 +338,6 @@ generate_config() {
       }
       }
   ],
-  "outbounds": [
-    {
-      "type": "direct",
-      "tag": "direct",
-    }
-  ],
   "route": {
     "rules": [
 	     {
@@ -354,19 +348,10 @@ generate_config() {
           "tuic5-sb",
           "vl-sb"
         ]
-      },
-	   {
-        "ip_version": 4,
-        "outbound": "direct",
-        "inbound": [
-          "hy2-sb",
-          "tuic5-sb",
-          "vl-sb"
-        ]
       }
 	]
   },
-  "endpoints": [
+  "outbounds": [
     {
       "type": "wireguard",
       "tag": "wg-out",
