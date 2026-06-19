@@ -342,10 +342,53 @@ generate_config() {
     {
       "type": "direct",
       "tag": "direct",
-    },
+    }
+  ],
+  "route": {
+    "rules": [
+	     {
+        "ip_version": 6,
+        "outbound": "wg-out",
+        "inbound": [
+          "hy2-sb",
+          "tuic5-sb",
+          "vl-sb"
+        ]
+      },
+	   {
+        "ip_version": 4,
+        "outbound": "direct",
+        "inbound": [
+          "hy2-sb",
+          "tuic5-sb",
+          "vl-sb"
+        ]
+      }
+	]
+  },
+  "endpoints": [
     {
-      "type": "block",
-      "tag": "block"
+      "type": "wireguard",
+      "tag": "wg-out",
+      "system": false,
+      "mtu": 1280,
+      "address": [
+        "172.16.0.2/32",
+		"2606:4700:110:8cde:49ab:9463:cf15:bd1b/128"
+      ],
+      "private_key": "SO7Sc6KMBXzGOH1YRZ8Bjxe6maojbQiXhCgkyclQgVQ=",
+      "peers": [
+        {
+          "address": "engage.cloudflareclient.com",
+          "port": 2408,
+          "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+          "allowed_ips": [
+            "0.0.0.0/0",
+			"::/0"
+          ]
+        }
+      ],
+      "udp_timeout": "5m"
     }
   ]
 }
