@@ -355,26 +355,17 @@ generate_config() {
     {
       "type": "wireguard",
       "tag": "wg-out",
-      "system": false,
+      "system_interface": false,
       "mtu": 1280,
-      "address": [
+      "local_address": [
         "172.16.0.2/32",
 		"2606:4700:110:8cde:49ab:9463:cf15:bd1b/128"
       ],
       "private_key": "SO7Sc6KMBXzGOH1YRZ8Bjxe6maojbQiXhCgkyclQgVQ=",
-      "peers": [
-        {
-          "address": "engage.cloudflareclient.com",
-          "port": 2408,
-          "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-          "allowed_ips": [
-            "0.0.0.0/0",
-			"::/0"
-          ]
-        }
-      ],
-      "udp_timeout": "5m"
-    }
+       "server": "engage.cloudflareclient.com",
+       "server_port": 2408,
+       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+      }
   ]
 }
 EOF
